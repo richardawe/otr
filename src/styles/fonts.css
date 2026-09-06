@@ -1,0 +1,7 @@
+/* Bundled locally via @fontsource — no font CDN, no network request at
+   runtime. Only the weights/styles actually used are imported. */
+@import "@fontsource/spectral/300.css";
+@import "@fontsource/spectral/400.css";
+@import "@fontsource/spectral/300-italic.css";
+@import "@fontsource/archivo-narrow/400.css";
+@import "@fontsource/archivo-narrow/600.css";

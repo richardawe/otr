@@ -1,0 +1,44 @@
+{
+  "conclusions": [
+    {
+      "claim": "Lives here, works there",
+      "note": "Never told anyone; the commute said it",
+      "record": "baseline.home_work.inferred"
+    },
+    {
+      "claim": "Income band and a political leaning",
+      "note": "From what was read before eight in the morning",
+      "record": "browsing.inferred.sensitive_category"
+    },
+    {
+      "claim": "A probable health condition",
+      "note": "From one search, now a sensitive-category flag",
+      "record": "browsing.inferred.health_concern"
+    },
+    {
+      "claim": "A household composition of two, one of them dependent",
+      "note": "From co-viewing and shopping, not from a declaration",
+      "record": "home.inferred.occupancy"
+    },
+    {
+      "claim": "Sleeps badly, and is more volatile late at night",
+      "note": "The most commercially useful fact of the day",
+      "record": "sleep.inferred.emotional_volatility"
+    },
+    {
+      "claim": "A flight-risk score, already computed",
+      "note": "The employer's model may know before the employee has decided",
+      "record": "work.inferred.flight_risk"
+    },
+    {
+      "claim": "A life-stage change flagged from the shopping basket",
+      "note": "Nobody was asked to confirm it",
+      "record": "payment.inferred.life_stage"
+    },
+    {
+      "claim": "A feed tuned by strangers who behave the same way",
+      "note": "Recombined with people never met",
+      "record": "sleep.relational.feed_shaped"
+    }
+  ]
+}

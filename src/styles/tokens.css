@@ -1,0 +1,62 @@
+:root {
+  --paper: #d9dbd3;
+  --ink: #1a1e1c;
+  /* #6b7069 (the "obvious" reading of the muted grey) is only 3.6:1 against
+     --paper — short of WCAG AA's 4.5:1 for normal text. Darkened to hold a
+     comfortable margin above 4.5:1 wherever it's used as text, not just as
+     a hairline. */
+  --muted: #595d57;
+  --rule: #b4b8b0;
+  /* --rule is a soft decorative hairline (row/section dividers) and isn't
+     held to a contrast ratio for that use. Where a border is the boundary
+     of an interactive control (a button, a switch), WCAG 1.4.11 asks for
+     3:1 against the background, which --rule alone doesn't clear — hence
+     this separate, darker token for those specific cases. */
+  --rule-strong: #797b76;
+  /* The brand magenta from the spec, #c6006f, is only 4.14:1 against
+     --paper — enough for the 3:1 a decorative marker or chart line needs,
+     not enough for body text at 4.5:1. --infer stays the true brand colour
+     for markers, ticks, and other non-text uses; --infer-text is a
+     darkened, same-hue variant (4.8:1) for anywhere the colour labels
+     actual text (an inferred record's datum, a heading, a count). */
+  --infer: #c6006f;
+  --infer-text: #b40065;
+
+  --sans: "Archivo Narrow", system-ui, sans-serif;
+  --serif: "Spectral", Georgia, serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --touch-min: 44px;
+
+  --text-scale: 1;
+}
+
+/* High contrast: darker ink, lighter paper, stronger hairlines. Toggled by
+   [data-contrast="high"] on the root element (see Settings). */
+[data-contrast="high"] {
+  --paper: #ffffff;
+  --ink: #000000;
+  --muted: #3a3d3a;
+  --rule: #6b6b6b;
+  --rule-strong: #4a4a4a;
+  --infer: #a3005a;
+  --infer-text: #a3005a;
+}
+
+@media (prefers-contrast: more) {
+  :root:not([data-contrast="standard"]) {
+    --paper: #ffffff;
+    --ink: #000000;
+    --muted: #3a3d3a;
+    --rule: #6b6b6b;
+    --infer: #a3005a;
+    --infer-text: #a3005a;
+  }
+}

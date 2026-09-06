@@ -1,54 +1,155 @@
 # On the record
 
-Two views on what ordinary life puts on the record: what a single described
-action generates, and what accumulates across twenty-four hours.
+What an ordinary human action puts on the record — and what a composite
+twenty-four hours accumulates. Offline-first, telemetry-free, and makes no
+network requests at any point.
 
-Static site. No build step, no dependencies, no analytics.
+Two modes:
 
-## Files
+- **One action.** Describe something you did in plain language. The app
+  matches keywords against a local corpus and shows the records that act
+  generates, grouped into three kinds.
+- **One day.** A composite twenty-four hours, scrubbable by time of day,
+  accumulating records as the day progresses, ending in a panel of the
+  conclusions the day produced about you.
 
-    index.html    markup and the shell for both tabs
-    styles.css    design tokens and layout
-    app.js        the corpus and all rendering
+Every record is one of three kinds — this classification is the point of the
+product, not a detail:
 
-## Deploy to GitHub Pages
+- **Emitted** — the person produced it, knowingly or not.
+- **Inferred** — no one recorded it; a model produced it from other
+  fragments. Never given by the person.
+- **Relational** — it concerns other people too.
 
-1. Create a repository and push these three files to the root of `main`.
-2. Repository → Settings → Pages.
-3. Under "Build and deployment", set Source to **Deploy from a branch**,
-   branch `main`, folder `/ (root)`. Save.
-4. The site appears at `https://<user>.github.io/<repo>/` within a minute or two.
+See [`METHOD.md`](METHOD.md) for how the corpus is built and what the
+confidence tiers (`documented` / `reported` / `modelled`) mean, and
+[`PRIVACY.md`](PRIVACY.md) for the no-network guarantee and how it's enforced.
 
-To preview locally, open `index.html` directly, or run
-`python3 -m http.server` in this folder and visit `localhost:8000`.
+## Repository layout
 
-## Editing the content
+```
+/content     the corpus and UI strings — data, not code (CC BY-NC-SA 4.0)
+/src         the React application (MIT)
+/src-tauri   Tauri v2 desktop wrapper (Windows)
+/scripts     content validation, no-network check, icon generation, a11y audit
+/.github     CI: build all targets, validate content, check for network APIs, run axe
+```
 
-Everything worth changing lives at the top of `app.js`.
+See [`LICENSING.md`](LICENSING.md) for why the licence boundary sits exactly
+at `/content` vs. everything else.
 
-- `MODULES` — keyword-matched record sets for the "One action" tab. Add an
-  entry with `keys` and `records` to cover a new kind of act.
-- `PHONE` — records that always apply, on the assumption a phone is present.
-- `DAY` — the twenty-four hour composite. `t` is minutes past midnight.
-- `PROFILE` — the conclusions shown at the end of the day.
+## Stack
 
-Records are built with three helpers, and the distinction is the point of the
-whole thing:
+A single web core (TypeScript + React + Vite, plain CSS with custom
+properties, no CSS framework), wrapped natively:
 
-- `em()` / `E()` — **emitted**: the person produced it.
-- `inf()` / `I()` — **inferred**: a model produced it; they never gave it.
-- `rel()` / `R()` — **relational**: it concerns other people too.
+- **Capacitor** for iOS and Android.
+- **Tauri v2** for Windows desktop (a signed `.msi`).
 
-## On accuracy
+Runtime dependencies are React and the two native wrappers — nothing else.
+Fonts (Spectral, Archivo Narrow) are bundled locally via `@fontsource`
+packages (build-time assets, not a font CDN, and not loaded over the
+network at runtime).
 
-The corpus is hand-written and illustrative, not an audit of any named company.
-Volumes are plausible orders of magnitude rather than observed counts. The
-ad-auction figures follow the Irish Council for Civil Liberties' estimate of 462
-real-time-bidding broadcasts per day for a UK adult (376 across Europe, 747 in
-the US): https://www.iccl.ie/rtb/
+## Getting started
 
-Emitted records are broadly auditable. Inferred ones mostly are not, because
-inference is the part firms do not publish — those lines are drawn from
-regulatory findings, reporting, and patents rather than observation. If you
-extend this, adding a source field per record would be the single biggest
-improvement.
+```sh
+npm install
+npm run dev        # web dev server at http://localhost:5173
+npm run build      # type-checks and builds the web core to dist/
+npm test           # validates /content and checks dist/ for network APIs
+```
+
+## Building for each target
+
+### Web
+
+```sh
+npm run build
+npm run preview     # serve dist/ locally
+```
+
+### iOS / Android (Capacitor)
+
+Native platform projects (`ios/`, `android/`) are generated locally, not
+committed — they're derived output. Requires Xcode (iOS) or Android
+Studio / the Android SDK + a JDK (Android).
+
+```sh
+npm run build
+npx cap add ios          # first time only
+npx cap add android       # first time only
+npx cap sync
+
+npx cap open ios          # opens Xcode
+npx cap open android      # opens Android Studio
+```
+
+Before shipping, replace the placeholder icon at `resources/icon.png`
+(generated by `scripts/generate-placeholder-icons.mjs`) with real artwork and
+run `npx @capacitor/assets generate` to produce the full icon/splash set.
+
+### Windows desktop (Tauri)
+
+Requires the Rust toolchain (`rustup`) and, on Windows, the WebView2 runtime
+(preinstalled on current Windows) and the Visual Studio Build Tools (C++
+workload).
+
+```sh
+npm run build
+npx tauri dev          # run in a dev window
+npx tauri build --bundles msi
+```
+
+The `.msi` is unsigned by default. To produce a signed installer, set the
+`TAURI_SIGNING_PRIVATE_KEY` and `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` secrets
+(see `.github/workflows/ci.yml`) with a certificate valid for Authenticode
+signing.
+
+## Continuous integration
+
+`.github/workflows/ci.yml` runs on every push and pull request:
+
+- type-checks and builds the web core;
+- validates `/content` against the record schema (`npm run validate:content`)
+  — a `documented` or `reported` record with no source fails the build;
+- scans the built bundle for `fetch`, `XMLHttpRequest`, `WebSocket`, and
+  similar network APIs (`npm run check:no-network`);
+- runs an accessibility audit (axe-core, WCAG 2.2 A/AA) against the built app;
+- builds the Windows desktop bundle, an Android debug APK, and an iOS
+  simulator build.
+
+## Content
+
+Everything worth translating or extending lives in `/content`, not in code:
+
+- `records.json` — the corpus. Each record names a datum, who holds it, how
+  it's generated, when it applies, its confidence tier, and its sources.
+- `modules.json` — keyword triggers mapping free text to record ids, for the
+  One action screen.
+- `day.json` — the composite day: moments in time, a plain-language act, and
+  the record entries (with counts and a plain-English basis for each count)
+  that moment generates.
+- `profile.json` — the conclusions shown at the end of the day.
+- `strings/*.json` — every UI string, one file per language. Adding a
+  language is a matter of adding a file here; see `strings/ar.json` for a
+  working right-to-left example. No code change is required.
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the template to submit a sourced
+record.
+
+## Accessibility
+
+Built to WCAG 2.2 AA as a release requirement, not a polish pass: labelled
+controls, visible keyboard focus, full keyboard operation of both modes,
+`prefers-reduced-motion` support (and an in-app override), 4.5:1 minimum
+contrast (with a high-contrast mode), text scaling to 200%, and 44px minimum
+touch targets. See `.github/workflows/ci.yml` for the automated audit.
+
+## Licence
+
+Dual-licensed on purpose — see [`LICENSING.md`](LICENSING.md):
+
+- `/src` and everything outside `/content` — MIT.
+- `/content` (the corpus and UI strings) — CC BY-NC-SA 4.0. Commercial
+  licences for the corpus are available separately.

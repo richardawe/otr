@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ontherecord.app/schema/record.schema.json",
+  "title": "Record",
+  "description": "One entry in the corpus: a single piece of data an ordinary action puts on the record.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "datum",
+    "holder_type",
+    "kind",
+    "mechanism",
+    "conditions",
+    "jurisdictions",
+    "confidence",
+    "sources",
+    "tags"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(\\.[a-z0-9_]+)+$",
+      "description": "Dotted namespace, e.g. transit.cctv.onboard"
+    },
+    "datum": { "type": "string", "minLength": 1 },
+    "holder_type": { "type": "string", "minLength": 1 },
+    "holder_examples": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["emitted", "inferred", "relational"]
+    },
+    "mechanism": { "type": "string", "minLength": 1 },
+    "conditions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "jurisdictions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["documented", "reported", "modelled"]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "publisher", "url", "date", "type"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+          "date": { "type": "string", "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$" },
+          "type": {
+            "type": "string",
+            "enum": ["regulatory", "litigation", "journalism", "academic", "policy", "vendor_doc"]
+          }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "note": { "type": "string" }
+  }
+}

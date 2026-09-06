@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capabilities for the main window. Deliberately minimal: no filesystem, shell, HTTP, or IPC access is granted — the app has no need to leave the bundled webview.",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

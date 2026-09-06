@@ -1,0 +1,125 @@
+{
+  "baseline": [
+    "baseline.cell.handover",
+    "baseline.wifi_bluetooth.beacon",
+    "baseline.appopen.sequence",
+    "baseline.home_work.inferred"
+  ],
+  "modules": [
+    {
+      "id": "transit",
+      "keys": ["bus", "train", "tube", "tram", "metro", "transit", "commute", "subway", "underground"],
+      "records": [
+        "transit.card.tap",
+        "transit.cctv.onboard",
+        "transit.inferred.commute_pattern",
+        "transit.inferred.income_band",
+        "transit.relational.bystanders",
+        "transit.relational.segment"
+      ]
+    },
+    {
+      "id": "payment",
+      "keys": ["card", "bought", "buy", "paid", "pay", "shop", "purchase", "contactless", "apple pay", "google pay"],
+      "records": [
+        "payment.card.transaction",
+        "payment.item.sku",
+        "payment.store.dwell",
+        "payment.inferred.spending_profile",
+        "payment.inferred.life_stage",
+        "payment.relational.gift_shopping"
+      ]
+    },
+    {
+      "id": "vice",
+      "keys": ["cigarette", "smoke", "tobacco", "vape", "alcohol", "wine", "beer", "drink"],
+      "records": [
+        "vice.inferred.smoker_drinker_status",
+        "vice.inferred.health_risk_score",
+        "vice.inferred.ad_segment_dual",
+        "vice.relational.household_score"
+      ]
+    },
+    {
+      "id": "sleep",
+      "keys": ["sleep", "insomnia", "awake", "bed", "night", "scroll", "scrolling"],
+      "records": [
+        "sleep.session.timestamps",
+        "sleep.scroll.velocity",
+        "sleep.typed.deleted",
+        "sleep.screenon.window",
+        "sleep.inferred.disrupted_mood",
+        "sleep.inferred.emotional_volatility",
+        "sleep.relational.feed_shaped"
+      ]
+    },
+    {
+      "id": "exercise",
+      "keys": ["run", "ran", "jog", "walk", "walked", "cycle", "gym", "exercise", "park", "hike"],
+      "records": [
+        "exercise.gps.route",
+        "exercise.heartrate.recovery",
+        "exercise.doorbell.dashcam",
+        "exercise.inferred.injury_risk",
+        "exercise.inferred.home_address",
+        "exercise.relational.passersby",
+        "exercise.relational.leaderboard"
+      ]
+    },
+    {
+      "id": "comms",
+      "keys": ["call", "called", "phone", "rang", "text", "message", "mum", "mom", "dad", "friend"],
+      "records": [
+        "comms.call.detail_record",
+        "comms.contact.graph",
+        "comms.inferred.closeness",
+        "comms.inferred.life_event",
+        "comms.relational.uploaded_by_others"
+      ]
+    },
+    {
+      "id": "driving",
+      "keys": ["drove", "drive", "car", "parked", "traffic", "petrol", "fuel"],
+      "records": [
+        "driving.anpr.read",
+        "driving.telematics",
+        "driving.cabin.mic_camera",
+        "driving.inferred.risk_score",
+        "driving.relational.passengers"
+      ]
+    },
+    {
+      "id": "work",
+      "keys": ["work", "office", "meeting", "email", "slack", "shift", "laptop"],
+      "records": [
+        "work.badge.swipe",
+        "work.keystroke.idle",
+        "work.meeting.transcript",
+        "work.inferred.flight_risk",
+        "work.relational.colleagues"
+      ]
+    },
+    {
+      "id": "browsing",
+      "keys": ["searched", "google", "looked up", "browsed", "online", "website"],
+      "records": [
+        "browsing.search.query",
+        "browsing.rtb.bid_request",
+        "browsing.inferred.health_concern",
+        "browsing.inferred.sensitive_category"
+      ]
+    },
+    {
+      "id": "home",
+      "keys": ["home", "house", "kitchen", "cooked", "tv", "watched", "shower", "flat", "alexa", "echo"],
+      "records": [
+        "home.meter.disaggregated",
+        "home.tv.acr",
+        "home.speaker.wake_review",
+        "home.doorbell.footage_shared",
+        "home.inferred.occupancy",
+        "home.relational.visitors"
+      ]
+    }
+  ]
+}

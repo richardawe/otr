@@ -1,0 +1,170 @@
+{
+  "moments": [
+    {
+      "t": 0,
+      "act": "Asleep. Phone charging on the nightstand.",
+      "prompt": "The phone is not being used, yet it is still producing records. What does 'off' actually mean for a device like this?",
+      "entries": [
+        { "record": "baseline.cell.handover", "count": 8, "count_basis": "Roughly one mast handover per hour while stationary overnight" },
+        { "record": "sleep.screenon.window", "count": 480, "count_basis": "Minute-level heart rate and movement samples across an 8-hour night" },
+        { "record": "sleep.scroll.velocity", "count": 12, "count_basis": "Background app refreshes and ad SDK pings from apps not opened since yesterday" },
+        { "record": "sleep.inferred.disrupted_mood", "count": 1, "count_basis": "One overnight sleep-quality inference" }
+      ]
+    },
+    {
+      "t": 402,
+      "act": "Alarm. First unlock of the day.",
+      "prompt": "A single unlock produces a wake-consistency inference. Who benefits from knowing a person's chronotype, and how?",
+      "entries": [
+        { "record": "baseline.appopen.sequence", "count": 4, "count_basis": "Alarm dismissal, unlock, and the first two app opens" },
+        { "record": "sleep.screenon.window", "count": 1, "count_basis": "Night's sleep summary uploaded as a single record" },
+        { "record": "sleep.inferred.emotional_volatility", "count": 1, "count_basis": "One chronotype/wake-consistency inference" }
+      ]
+    },
+    {
+      "t": 425,
+      "act": "Shower, kettle, toast.",
+      "prompt": "The electricity meter can tell a shower from a kettle. What else could a fine-grained appliance signal reveal about a household?",
+      "entries": [
+        { "record": "home.meter.disaggregated", "count": 2, "count_basis": "Two disaggregated appliance events: shower, then kettle" },
+        { "record": "home.inferred.occupancy", "count": 1, "count_basis": "One occupancy/routine inference for the morning window" }
+      ]
+    },
+    {
+      "t": 440,
+      "act": "Reads the news on the sofa.",
+      "prompt": "Reading the news broadcasts a profile of the reader to a market of bidders before the page even finishes loading. Does the reader have any practical way to know who received it?",
+      "entries": [
+        { "record": "browsing.search.query", "count": 6, "count_basis": "Six page loads while reading the news" },
+        { "record": "browsing.rtb.bid_request", "count": 96, "count_basis": "A fraction of the ICCL-estimated real-time-bidding broadcasts spread across a day of browsing" },
+        { "record": "browsing.inferred.sensitive_category", "count": 1, "count_basis": "One political-leaning inference drawn from the articles read" }
+      ]
+    },
+    {
+      "t": 475,
+      "act": "Leaves the house.",
+      "prompt": "Two neighbours' doorbell cameras record this moment without their owner's involvement at all. Whose data is this?",
+      "entries": [
+        { "record": "home.doorbell.footage_shared", "count": 3, "count_basis": "Own doorbell plus two neighbours' cameras along the path to the street" },
+        { "record": "home.relational.visitors", "count": 11, "count_basis": "Passers-by incidentally recorded in the same frames" }
+      ]
+    },
+    {
+      "t": 490,
+      "act": "Bus into town.",
+      "prompt": "No address was ever typed into any form, yet home and work locations can be inferred from where a routine journey begins and ends. Is that different from being told directly?",
+      "entries": [
+        { "record": "transit.card.tap", "count": 1, "count_basis": "One tap at boarding" },
+        { "record": "transit.cctv.onboard", "count": 2, "count_basis": "Onboard camera plus one platform camera" },
+        { "record": "baseline.cell.handover", "count": 14, "count_basis": "Mast handovers along a twenty-minute route" },
+        { "record": "baseline.home_work.inferred", "count": 1, "count_basis": "One home/work-address inference from where the journey begins and ends" }
+      ]
+    },
+    {
+      "t": 530,
+      "act": "Coffee, paid by phone.",
+      "prompt": "One coffee generates a bank record, a retailer record, and a wifi sighting. Which of these would the buyer expect, and which would surprise them?",
+      "entries": [
+        { "record": "payment.card.transaction", "count": 1, "count_basis": "One card transaction" },
+        { "record": "payment.item.sku", "count": 1, "count_basis": "One itemised receipt line" },
+        { "record": "baseline.wifi_bluetooth.beacon", "count": 1, "count_basis": "One wifi probe captured at the counter" },
+        { "record": "payment.inferred.spending_profile", "count": 1, "count_basis": "One update to the daily-spend-rhythm model" }
+      ]
+    },
+    {
+      "t": 550,
+      "act": "At a desk until half twelve.",
+      "prompt": "A flight-risk score can be computed before an employee has decided anything. What would change if employees could see their own score?",
+      "entries": [
+        { "record": "work.badge.swipe", "count": 6, "count_basis": "Badge swipes between zones over the morning" },
+        { "record": "work.keystroke.idle", "count": 408, "count_basis": "Keystroke-rate and idle-time samples taken every thirty seconds across 3.4 hours" },
+        { "record": "work.meeting.transcript", "count": 1, "count_basis": "One meeting transcript" },
+        { "record": "work.inferred.flight_risk", "count": 1, "count_basis": "One productivity/flight-risk score update" },
+        { "record": "work.relational.colleagues", "count": 5, "count_basis": "Five colleagues transcribed in the same meeting" }
+      ]
+    },
+    {
+      "t": 760,
+      "act": "Walks out for lunch.",
+      "prompt": "Forty strangers are captured in frame on a five-minute walk. None of them chose to be part of this record. Whose consent, if anyone's, applies here?",
+      "entries": [
+        { "record": "driving.anpr.read", "count": 1, "count_basis": "One incidental plate read passing a junction camera" },
+        { "record": "transit.cctv.onboard", "count": 5, "count_basis": "High-street cameras along the route" },
+        { "record": "browsing.rtb.bid_request", "count": 126, "count_basis": "Location-linked bid requests from apps running in the foreground" },
+        { "record": "transit.relational.bystanders", "count": 40, "count_basis": "Strangers incidentally captured along the route" }
+      ]
+    },
+    {
+      "t": 855,
+      "act": "Looks up a symptom, privately.",
+      "prompt": "A search typed in privacy becomes a sensitive-category inference attached to an advertising profile. What is the gap between how private this feels and how private it is?",
+      "entries": [
+        { "record": "browsing.search.query", "count": 4, "count_basis": "Four search queries with timestamp and location" },
+        { "record": "browsing.rtb.bid_request", "count": 22, "count_basis": "Trackers embedded on the health pages read" },
+        { "record": "browsing.inferred.health_concern", "count": 1, "count_basis": "One health-condition inference attached to the profile" }
+      ]
+    },
+    {
+      "t": 960,
+      "act": "Texts back and forth. Calls mum.",
+      "prompt": "A closeness ranking of relationships is built from metadata alone, with no message ever read. Is metadata-only analysis less revealing than reading content, or just differently revealing?",
+      "entries": [
+        { "record": "comms.call.detail_record", "count": 38, "count_basis": "Call and message metadata across the exchange" },
+        { "record": "comms.inferred.closeness", "count": 1, "count_basis": "One relationship-closeness update" },
+        { "record": "comms.relational.uploaded_by_others", "count": 1, "count_basis": "This number, as held in someone else's synced contacts" }
+      ]
+    },
+    {
+      "t": 1055,
+      "act": "Commute home.",
+      "prompt": "This is the same journey as the morning, generating the same kinds of record. Does repetition make a record more or less significant?",
+      "entries": [
+        { "record": "transit.card.tap", "count": 1, "count_basis": "One tap at boarding" },
+        { "record": "transit.cctv.onboard", "count": 2, "count_basis": "Onboard camera and barrier camera" },
+        { "record": "baseline.cell.handover", "count": 16, "count_basis": "Mast handovers along the route" }
+      ]
+    },
+    {
+      "t": 1110,
+      "act": "Big shop on the way back.",
+      "prompt": "Items bought as gifts are filed as the account holder's own habits. What happens to accuracy when a single account has to represent an entire household?",
+      "entries": [
+        { "record": "payment.item.sku", "count": 31, "count_basis": "Every item in the basket, linked by the loyalty card" },
+        { "record": "payment.store.dwell", "count": 4, "count_basis": "Store cameras and shelf sensors along the aisles" },
+        { "record": "payment.inferred.life_stage", "count": 1, "count_basis": "One basket-composition inference" },
+        { "record": "payment.relational.gift_shopping", "count": 3, "count_basis": "Three items bought for other people, filed as this account's own habit" }
+      ]
+    },
+    {
+      "t": 1200,
+      "act": "Two hours in front of the television.",
+      "prompt": "Automatic content recognition samples the screen many times a minute, including from other devices plugged into the TV. Where is the boundary of 'the television' as a data-collecting object?",
+      "entries": [
+        { "record": "home.tv.acr", "count": 480, "count_basis": "Screen samples taken every fifteen seconds across two hours, including from a plugged-in console" },
+        { "record": "sleep.scroll.velocity", "count": 74, "count_basis": "Pauses, rewinds, and one programme abandoned after four minutes" },
+        { "record": "home.inferred.occupancy", "count": 1, "count_basis": "One household-composition inference from co-viewing" }
+      ]
+    },
+    {
+      "t": 1365,
+      "act": "In bed, scrolling. Can't settle.",
+      "prompt": "The feed shown here is shaped by what similar late-night users stayed on — people this person has never met. What does it mean to be shown something curated by strangers' compulsions?",
+      "entries": [
+        { "record": "sleep.scroll.velocity", "count": 902, "count_basis": "Dwell time, scroll velocity, hovers, and rewatches across the session" },
+        { "record": "sleep.typed.deleted", "count": 3, "count_basis": "Three messages typed and then deleted before sending" },
+        { "record": "browsing.rtb.bid_request", "count": 180, "count_basis": "Further bid requests, now carrying a night-time signal" },
+        { "record": "sleep.inferred.emotional_volatility", "count": 1, "count_basis": "One updated mood-volatility score" },
+        { "record": "sleep.relational.feed_shaped", "count": 1, "count_basis": "One feed re-ranked using similar late-night users' behaviour" }
+      ]
+    },
+    {
+      "t": 1430,
+      "act": "Asleep. The wearable picks back up.",
+      "prompt": "Tomorrow's readiness score is computed before tomorrow has happened. Looking back across the whole day: which single record, if any, feels most consequential — and is it one of the roughly twenty inferences, or one of the thousands of emissions?",
+      "entries": [
+        { "record": "exercise.heartrate.recovery", "count": 62, "count_basis": "Heart rate resumed at minute intervals" },
+        { "record": "exercise.inferred.injury_risk", "count": 1, "count_basis": "One readiness-score update, already computed for tomorrow" }
+      ]
+    }
+  ]
+}

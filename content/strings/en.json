@@ -1,0 +1,161 @@
+{
+  "meta": {
+    "language": "en",
+    "dir": "ltr",
+    "label": "English"
+  },
+  "app": {
+    "name": "On the record",
+    "standingLeft": "On the record",
+    "standingRight": "Illustrative data",
+    "caveat": "Hand-written examples, not a live audit. Volumes are plausible orders of magnitude rather than observed counts. What is held varies by country, handset, and settings. See Method for how the corpus is built."
+  },
+  "nav": {
+    "oneAction": "One action",
+    "oneActionSub": "What a single act generates",
+    "oneDay": "One day",
+    "oneDaySub": "What accumulates in 24 hours",
+    "evidence": "Evidence index",
+    "method": "Method",
+    "settings": "Settings",
+    "skipToContent": "Skip to content"
+  },
+  "kinds": {
+    "emitted": { "label": "Emitted", "gloss": "You produced it." },
+    "inferred": { "label": "Inferred", "gloss": "A model produced it. You never gave it." },
+    "relational": { "label": "Relational", "gloss": "It is about other people too." }
+  },
+  "confidence": {
+    "documented": {
+      "label": "Documented",
+      "gloss": "Supported by a regulator, a court, or the holder's own disclosure."
+    },
+    "reported": {
+      "label": "Reported",
+      "gloss": "Supported by credible journalism or research."
+    },
+    "modelled": {
+      "label": "Modelled",
+      "gloss": "No public source; asserted from how these systems are known to work."
+    }
+  },
+  "oneAction": {
+    "title": "Describe something you did today.",
+    "placeholder": "I walked to the shop for milk",
+    "inputLabel": "Describe an action",
+    "submit": "Show the records",
+    "examplesLabel": "Try an example",
+    "examples": [
+      "I took the bus to work",
+      "I couldn't sleep and scrolled my phone",
+      "I bought cigarettes with my card",
+      "I went for a run in the park",
+      "I called my mum"
+    ],
+    "statusReading": "Reading the act back as data…",
+    "noMatch": "No specific pattern matched, so this shows only what a phone in your pocket generates regardless. Try one of the examples for a fuller register.",
+    "summaryRecords": "{count, plural, one {# record} other {# records}}",
+    "summaryNeverGave": "{count, plural, one {# you never gave} other {# you never gave}}",
+    "reading": "None of these fragments is you. Recombined with strangers', they set what you are offered, at what price, and whether the door opens.",
+    "unrecordedHeading": "Still unrecorded",
+    "unrecorded": [
+      "Why you did it",
+      "What you noticed and said nothing about",
+      "What you decided against doing"
+    ],
+    "exportButton": "Export this result"
+  },
+  "oneDay": {
+    "headline": "By {time} you have generated {total} records without doing anything unusual.",
+    "splitEmitted": "{count} you emitted",
+    "splitRelational": "{count} are about other people",
+    "splitInferred": "{count} are conclusions nobody asked you to confirm",
+    "chartLabel": "Cumulative records across the day",
+    "axisMidnight": "midnight",
+    "axisNoon": "noon",
+    "scrubLabel": "Time of day",
+    "play": "Play the day",
+    "pause": "Pause",
+    "replay": "Replay the day",
+    "skipToMidnight": "Skip to midnight",
+    "feedHeading": "The day so far, most recent first",
+    "profileHeading": "What the day concluded about you",
+    "profileLede": "Roughly {count} records, and this is what they were for. None of it was declared. All of it is actionable tomorrow.",
+    "exportButton": "Export today's summary",
+    "inferenceTickLabel": "One inference produced at this moment"
+  },
+  "recordDetail": {
+    "heading": "Record detail",
+    "close": "Close",
+    "mechanismHeading": "How it is generated",
+    "conditionsHeading": "When this applies",
+    "jurisdictionsHeading": "Jurisdictions",
+    "confidenceHeading": "Confidence",
+    "sourcesHeading": "Sources",
+    "noSources": "No public source is cited for this record; it is marked modelled rather than documented or reported.",
+    "holderHeading": "Who holds it",
+    "viewSource": "View source",
+    "backToResults": "Back to results"
+  },
+  "evidenceIndex": {
+    "title": "Evidence index",
+    "intro": "Every source cited anywhere in this corpus, grouped by type, so the evidence base can be inspected without using the tool.",
+    "empty": "No sources of this type yet.",
+    "typeRegulatory": "Regulatory",
+    "typeLitigation": "Litigation",
+    "typeJournalism": "Journalism",
+    "typeAcademic": "Academic",
+    "typePolicy": "Policy",
+    "typeVendorDoc": "Vendor documentation",
+    "usedBy": "{count, plural, one {Cited by # record} other {Cited by # records}}"
+  },
+  "method": {
+    "title": "Method",
+    "corpusHeading": "How the corpus is built",
+    "corpusBody": "Each record names a datum, who holds it, how it is generated, and under what conditions it applies. Records are hand-written and reviewed against regulatory findings, litigation, journalism, academic research, official policy guidance, and vendors' own documentation before anything is marked documented or reported.",
+    "confidenceHeading": "What the confidence tiers mean",
+    "confidenceDocumented": "Documented — a regulator, a court, or the holder itself has disclosed this in writing.",
+    "confidenceReported": "Reported — credible journalism or peer-reviewed research has described this.",
+    "confidenceModelled": "Modelled — no public source exists; the record describes how this class of system is known to work. Most inferences fall here, because inference is what firms disclose least.",
+    "limitsHeading": "What this app cannot know",
+    "limitsBody": "This is not a live audit of any named company, and it does not know what any specific holder does with any specific person's data today. Practices change, vary by jurisdiction, and are frequently undisclosed by design. Treat every count as an illustrative order of magnitude, not a measurement.",
+    "inferenceHeading": "Why inference is the least documentable part",
+    "inferenceBody": "Emitted records usually leave some trace the person can point to. Inferences are computed internally, rarely disclosed, and almost never shown to the person they describe — so the tier that most needs scrutiny is structurally the one with the least public evidence. That asymmetry is itself part of the argument this app is making, not a gap to be apologetic about.",
+    "contributeHeading": "Contribute a sourced record",
+    "contributeBody": "See CONTRIBUTING.md in the repository for the template."
+  },
+  "settings": {
+    "title": "Settings",
+    "languageHeading": "Language",
+    "textSizeHeading": "Text size",
+    "textSizeSmall": "Small",
+    "textSizeDefault": "Default",
+    "textSizeLarge": "Large",
+    "textSizeXLarge": "Extra large",
+    "reducedMotionHeading": "Reduced motion",
+    "reducedMotionBody": "Turn off row and chart animation.",
+    "highContrastHeading": "High contrast",
+    "highContrastBody": "Increase contrast beyond the default palette.",
+    "educatorHeading": "Educator mode",
+    "educatorBody": "Show discussion prompts in the day view and hide the free-text input, for group and classroom settings.",
+    "privacyHeading": "Privacy",
+    "privacyBody": "This app makes no network requests. Nothing you type or do here leaves the device. See PRIVACY.md in the repository."
+  },
+  "educator": {
+    "promptHeading": "Discussion prompt",
+    "groupModeNotice": "Educator mode is on: free-text entry is hidden. Use the One day view."
+  },
+  "export": {
+    "asPdf": "Export as PDF",
+    "asPng": "Export as image",
+    "preparing": "Preparing export…",
+    "sourcesIncluded": "Sources included",
+    "generatedBy": "Generated with On the record — offline, no data leaves this device."
+  },
+  "common": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "loading": "Loading…",
+    "back": "Back"
+  }
+}

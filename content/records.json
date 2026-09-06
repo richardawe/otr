@@ -1,0 +1,953 @@
+[
+  {
+    "id": "baseline.cell.handover",
+    "datum": "Cell mast handovers logged as the handset moves between masts",
+    "holder_type": "mobile_network_operator",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Network signalling generated automatically to route calls and data, kept as call- and session-detail records",
+    "conditions": [
+      "Applies to any switched-on handset registered to a network",
+      "Retention length is set by national law where a retention notice is in force"
+    ],
+    "jurisdictions": ["UK"],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "Investigatory Powers Act 2016, Section 87: Data retention notices",
+        "publisher": "UK Public General Acts, legislation.gov.uk",
+        "url": "https://www.legislation.gov.uk/ukpga/2016/25/section/87",
+        "date": "2016-11-29",
+        "type": "regulatory"
+      }
+    ],
+    "tags": ["telecom", "location", "baseline"]
+  },
+  {
+    "id": "baseline.wifi_bluetooth.beacon",
+    "datum": "Wifi and Bluetooth probe requests broadcast to nearby receivers",
+    "holder_type": "retail_venue_analytics",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Handsets periodically broadcast probe requests carrying a MAC address, which street furniture or venue sensors log as footfall",
+    "conditions": [
+      "Applies where a venue, street furniture or vehicle operates wifi/Bluetooth sensors",
+      "Modern handsets randomise the MAC address by default, which reduces but does not eliminate linkability across sightings"
+    ],
+    "jurisdictions": ["UK"],
+    "confidence": "reported",
+    "sources": [
+      {
+        "title": "London Puts Stop To Sidewalk Bins That Track Cellphones",
+        "publisher": "NPR",
+        "url": "https://www.npr.org/sections/thetwo-way/2013/08/12/211368209/london-puts-stop-to-sidewalk-bins-that-track-cellphones",
+        "date": "2013-08-12",
+        "type": "journalism"
+      }
+    ],
+    "tags": ["wifi", "bluetooth", "retail", "baseline"]
+  },
+  {
+    "id": "baseline.appopen.sequence",
+    "datum": "Which apps are opened, in what order, and for how long",
+    "holder_type": "handset_os_vendor",
+    "holder_examples": ["Apple", "Google"],
+    "kind": "emitted",
+    "mechanism": "Usage logging built into the operating system, surfaced to the person through a screen-time dashboard",
+    "conditions": [
+      "Built into the handset operating system",
+      "Whether a copy leaves the device depends on the person's diagnostics and analytics settings"
+    ],
+    "jurisdictions": [],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "Get started with Screen Time on iPhone",
+        "publisher": "Apple",
+        "url": "https://support.apple.com/guide/iphone/get-started-with-screen-time-iphbfa595995/ios",
+        "date": "2026",
+        "type": "vendor_doc"
+      },
+      {
+        "title": "Manage how you spend time on your Android phone with Digital Wellbeing",
+        "publisher": "Google",
+        "url": "https://support.google.com/android/answer/9346420",
+        "date": "2026",
+        "type": "vendor_doc"
+      }
+    ],
+    "tags": ["handset", "usage", "baseline"]
+  },
+  {
+    "id": "baseline.home_work.inferred",
+    "datum": "Home and work locations, inferred from where the handset dwells overnight and by day",
+    "holder_type": "adtech_data_broker",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Location pings clustered by dwell time and time of day; never entered by the person",
+    "conditions": [
+      "Requires some source of location signal reaching a broker: an app SDK, wifi lookup, or cell data"
+    ],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["location", "inference", "baseline"]
+  },
+
+  {
+    "id": "transit.card.tap",
+    "datum": "Card tap at boarding or barrier, with time and stop",
+    "holder_type": "transit_operator",
+    "holder_examples": ["Transport for London"],
+    "kind": "emitted",
+    "mechanism": "The fare system logs each tap to calculate the fare and detect incomplete journeys",
+    "conditions": [
+      "Applies to smartcard and contactless fare systems",
+      "TfL journey data is de-personalised roughly eight weeks after the trip; payment card details tied to an account can be held up to 18 months"
+    ],
+    "jurisdictions": ["UK"],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "Oyster card — how we use your personal information",
+        "publisher": "Transport for London",
+        "url": "https://tfl.gov.uk/corporate/privacy-and-cookies/oyster-card",
+        "date": "2026",
+        "type": "vendor_doc"
+      }
+    ],
+    "tags": ["transport", "payment"]
+  },
+  {
+    "id": "transit.cctv.onboard",
+    "datum": "Onboard and platform CCTV",
+    "holder_type": "transit_operator",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Continuous recording, retained on a fixed schedule and disclosed to police on request",
+    "conditions": ["Applies where the operator runs onboard or platform cameras"],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["transport", "video"]
+  },
+  {
+    "id": "transit.inferred.commute_pattern",
+    "datum": "Commuting pattern and likely shift hours",
+    "holder_type": "transit_operator",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Derived from the regularity of tap times and routes across weeks",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["transport", "inference"]
+  },
+  {
+    "id": "transit.inferred.income_band",
+    "datum": "Household income band, correlated from route and stop",
+    "holder_type": "adtech_data_broker",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Stop and postcode-level correlation used as a proxy for income",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["transport", "inference"]
+  },
+  {
+    "id": "transit.relational.bystanders",
+    "datum": "Other passengers captured in the same CCTV frames",
+    "holder_type": "transit_operator",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "A fixed camera records everyone in frame, not only the account holder",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["transport", "relational"]
+  },
+  {
+    "id": "transit.relational.segment",
+    "datum": "Placement in a commuter advertising segment built from strangers' data",
+    "holder_type": "adtech_data_broker",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "Segments are trained on aggregate behaviour across many riders, then applied back to an individual",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["transport", "relational", "advertising"]
+  },
+
+  {
+    "id": "payment.card.transaction",
+    "datum": "Merchant, amount, time, and terminal ID",
+    "holder_type": "bank_card_network",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Logged by the card network and issuing bank to authorise and settle the payment",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["payment"]
+  },
+  {
+    "id": "payment.item.sku",
+    "datum": "Item-level SKUs on the receipt, linked to an identity if a loyalty card is scanned",
+    "holder_type": "retailer",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Point-of-sale system itemises the basket; loyalty accounts attach it to a customer record",
+    "conditions": ["Requires a loyalty card or linked payment method to attach to an identity"],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["payment", "retail"]
+  },
+  {
+    "id": "payment.store.dwell",
+    "datum": "Store entry and dwell time on camera",
+    "holder_type": "retailer",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "In-store cameras and, increasingly, shelf sensors log presence and movement",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["payment", "retail", "video"]
+  },
+  {
+    "id": "payment.inferred.spending_profile",
+    "datum": "Spending category profile and an estimate of disposable income",
+    "holder_type": "bank_credit_bureau",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Built from the pattern of merchant categories over time",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["payment", "inference"]
+  },
+  {
+    "id": "payment.inferred.life_stage",
+    "datum": "Life-stage flags — a new baby, a house move, an illness — inferred from a shift in basket composition",
+    "holder_type": "retailer",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "A shift in the mix of items bought is scored against known patterns for the life event",
+    "conditions": [
+      "The best-documented case involves one named US retailer's pregnancy-prediction program; the underlying technique is understood to generalise"
+    ],
+    "jurisdictions": ["US"],
+    "confidence": "reported",
+    "sources": [
+      {
+        "title": "How Companies Learn Your Secrets",
+        "publisher": "The New York Times",
+        "url": "https://www.nytimes.com/2012/02/19/magazine/shopping-habits.html",
+        "date": "2012-02-19",
+        "type": "journalism"
+      }
+    ],
+    "tags": ["payment", "retail", "inference"]
+  },
+  {
+    "id": "payment.relational.gift_shopping",
+    "datum": "Anyone shopped for appears in the profile as the account holder's own habit",
+    "holder_type": "retailer",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "The basket is attributed entirely to the account holder regardless of who the items are for",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["payment", "relational"]
+  },
+
+  {
+    "id": "vice.inferred.smoker_drinker_status",
+    "datum": "Smoker or drinker status attached to the record from a purchase category alone",
+    "holder_type": "insurer_data_broker",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Purchase category is treated as sufficient signal; no declaration is needed",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["tobacco", "alcohol", "inference"]
+  },
+  {
+    "id": "vice.inferred.health_risk_score",
+    "datum": "Health-risk score used to help set a quoted insurance premium",
+    "holder_type": "insurer",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Combines the purchase-derived status with other signals into an underwriting score",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["tobacco", "alcohol", "insurance", "inference"]
+  },
+  {
+    "id": "vice.inferred.ad_segment_dual",
+    "datum": "Ad segments built for cessation products and for the habit itself, from the same signal",
+    "holder_type": "adtech_data_broker",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "A single behavioural signal feeds two commercially opposed segments",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["tobacco", "alcohol", "advertising", "inference"]
+  },
+  {
+    "id": "vice.relational.household_score",
+    "datum": "Other household members scored on the same shared-address purchase basket",
+    "holder_type": "data_broker",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "Address-level linkage spreads one person's purchases across everyone registered at the address",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["tobacco", "alcohol", "relational"]
+  },
+
+  {
+    "id": "sleep.session.timestamps",
+    "datum": "Timestamps of every app session, including ones after midnight",
+    "holder_type": "handset_os_vendor",
+    "holder_examples": ["Apple", "Google"],
+    "kind": "emitted",
+    "mechanism": "Recorded by the operating system's screen-time feature for every foreground session",
+    "conditions": ["Built into the handset operating system"],
+    "jurisdictions": [],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "Get started with Screen Time on iPhone",
+        "publisher": "Apple",
+        "url": "https://support.apple.com/guide/iphone/get-started-with-screen-time-iphbfa595995/ios",
+        "date": "2026",
+        "type": "vendor_doc"
+      }
+    ],
+    "tags": ["sleep", "scrolling", "handset"]
+  },
+  {
+    "id": "sleep.scroll.velocity",
+    "datum": "Scroll velocity, pauses, and rewatched content",
+    "holder_type": "platform",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Client-side interaction telemetry sent back to the platform to tune what is shown next",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["sleep", "scrolling", "platform"]
+  },
+  {
+    "id": "sleep.typed.deleted",
+    "datum": "Text typed into a post box and then deleted before sending",
+    "holder_type": "platform",
+    "holder_examples": ["Facebook (studied case)"],
+    "kind": "emitted",
+    "mechanism": "Client-side code observes keystrokes in the composer; a large study of one platform found this is captured and analysed even when nothing is posted",
+    "conditions": [
+      "Documented for one major platform studied in 2013; described as a general client-side technique, not confirmed for every platform"
+    ],
+    "jurisdictions": ["US"],
+    "confidence": "reported",
+    "sources": [
+      {
+        "title": "Self-Censorship on Facebook",
+        "publisher": "Proceedings of the International AAAI Conference on Web and Social Media (ICWSM 2013)",
+        "url": "https://pdfs.semanticscholar.org/afc9/3ae41a168d6b80784713e4b312ef7a461457.pdf",
+        "date": "2013",
+        "type": "academic"
+      }
+    ],
+    "tags": ["sleep", "scrolling", "platform"]
+  },
+  {
+    "id": "sleep.screenon.window",
+    "datum": "Screen-on time and sleep window, from handset or wearable sensors",
+    "holder_type": "handset_os_vendor",
+    "holder_examples": ["Apple", "Google"],
+    "kind": "emitted",
+    "mechanism": "Accelerometer, screen state, and charging events combine into a sleep-window estimate",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "Manage how you spend time on your Android phone with Digital Wellbeing",
+        "publisher": "Google",
+        "url": "https://support.google.com/android/answer/9346420",
+        "date": "2026",
+        "type": "vendor_doc"
+      }
+    ],
+    "tags": ["sleep", "wearable"]
+  },
+  {
+    "id": "sleep.inferred.disrupted_mood",
+    "datum": "Disrupted sleep and mood state, inferred from posting hours",
+    "holder_type": "platform",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Night-time engagement is treated as a proxy signal for distress or insomnia",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["sleep", "inference"]
+  },
+  {
+    "id": "sleep.inferred.emotional_volatility",
+    "datum": "Emotional-volatility score used to time what content is shown",
+    "holder_type": "platform",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Engagement patterns across sessions are scored for volatility and fed back into ranking",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["sleep", "inference"]
+  },
+  {
+    "id": "sleep.relational.feed_shaped",
+    "datum": "Feed content ranked using what similar late-night users stayed on",
+    "holder_type": "platform",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "Ranking models trained on the aggregate behaviour of a cohort are applied to the individual",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["sleep", "relational"]
+  },
+
+  {
+    "id": "exercise.gps.route",
+    "datum": "GPS trace of the route, with pace per segment",
+    "holder_type": "fitness_app",
+    "holder_examples": ["Strava"],
+    "kind": "emitted",
+    "mechanism": "Recorded continuously during a tracked activity and uploaded to the app's servers",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["exercise", "location"]
+  },
+  {
+    "id": "exercise.heartrate.recovery",
+    "datum": "Heart rate, cadence, and recovery time",
+    "holder_type": "wearable_maker",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Sampled continuously by the wearable's sensors during and after activity",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["exercise", "wearable"]
+  },
+  {
+    "id": "exercise.doorbell.dashcam",
+    "datum": "Faces captured in doorbell and dashcam footage along the route",
+    "holder_type": "camera_owner",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Privately owned cameras along public routes record anyone passing",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["exercise", "video"]
+  },
+  {
+    "id": "exercise.inferred.injury_risk",
+    "datum": "Fitness trajectory and injury risk",
+    "holder_type": "wearable_maker",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Trends across sessions are scored against population models",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["exercise", "inference"]
+  },
+  {
+    "id": "exercise.inferred.home_address",
+    "datum": "Home address, inferred from where routes begin and end",
+    "holder_type": "fitness_app",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Loop-shaped routes reveal an origin point even when a privacy radius is applied near it",
+    "conditions": [
+      "A public aggregate heatmap of activity data has been shown to reveal the layout and use patterns of otherwise undisclosed sites"
+    ],
+    "jurisdictions": [],
+    "confidence": "reported",
+    "sources": [
+      {
+        "title": "Strava has published details about secret military bases, and an Australian was the first to know",
+        "publisher": "ABC News (Australia)",
+        "url": "https://www.abc.net.au/news/science/2018-01-29/strava-heat-map-shows-military-bases-and-supply-routes/9369490",
+        "date": "2018-01-29",
+        "type": "journalism"
+      }
+    ],
+    "tags": ["exercise", "location", "inference"]
+  },
+  {
+    "id": "exercise.relational.passersby",
+    "datum": "Everyone passed on the route, recorded incidentally by others' cameras",
+    "holder_type": "camera_owner",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "Fixed and dashboard cameras record whoever crosses their field of view",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["exercise", "relational"]
+  },
+  {
+    "id": "exercise.relational.leaderboard",
+    "datum": "Personal times made legible only by ranking against a public segment leaderboard",
+    "holder_type": "fitness_app",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "A route segment's leaderboard is built from every other user who has run it",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["exercise", "relational"]
+  },
+
+  {
+    "id": "comms.call.detail_record",
+    "datum": "Call detail record: numbers, duration, time, and serving mast",
+    "holder_type": "mobile_network_operator",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Generated to bill and route the call; content is not needed, the metadata is the product",
+    "conditions": ["Retention length is set by national law where a retention notice is in force"],
+    "jurisdictions": ["UK"],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "Investigatory Powers Act 2016, Section 87: Data retention notices",
+        "publisher": "UK Public General Acts, legislation.gov.uk",
+        "url": "https://www.legislation.gov.uk/ukpga/2016/25/section/87",
+        "date": "2016-11-29",
+        "type": "regulatory"
+      }
+    ],
+    "tags": ["communication", "telecom"]
+  },
+  {
+    "id": "comms.contact.graph",
+    "datum": "Contact graph and typical reply latency",
+    "holder_type": "messaging_platform",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Built from message metadata across the account's history",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["communication", "platform"]
+  },
+  {
+    "id": "comms.inferred.closeness",
+    "datum": "Closeness ranking of relationships, from frequency, duration, and who calls first",
+    "holder_type": "platform",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "A ranking model scores relationship strength from interaction patterns",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["communication", "inference"]
+  },
+  {
+    "id": "comms.inferred.life_event",
+    "datum": "Caregiving burden, bereavement, or family crisis, inferred from a sharp change in call pattern",
+    "holder_type": "adtech_data_broker",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "A sudden change in call frequency or timing is treated as a legible life-event signal",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["communication", "inference"]
+  },
+  {
+    "id": "comms.relational.uploaded_by_others",
+    "datum": "A phone number entered into the graph by someone else's contact sync, without the number's owner ever joining",
+    "holder_type": "platform",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "Contact-upload features add a number to the platform's graph even for people who hold no account",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["communication", "relational"]
+  },
+
+  {
+    "id": "driving.anpr.read",
+    "datum": "Number plate reads at fixed and mobile cameras",
+    "holder_type": "police_public_authority",
+    "holder_examples": ["UK National ANPR Service"],
+    "kind": "emitted",
+    "mechanism": "Cameras automatically read and log plates; forces submit a subset to a national database",
+    "conditions": [
+      "Data submitted to the National ANPR Service is generally retained for 12 months",
+      "Where data has evidential or investigative value it may be retained for longer"
+    ],
+    "jurisdictions": ["UK"],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "Automatic number plate recognition (ANPR)",
+        "publisher": "College of Policing",
+        "url": "https://www.college.police.uk/app/investigation/investigative-strategies/automatic-number-plate-recognition-anpr",
+        "date": "2026",
+        "type": "policy"
+      }
+    ],
+    "tags": ["driving", "video"]
+  },
+  {
+    "id": "driving.telematics",
+    "datum": "Telematics: speed, braking, cornering, and night driving",
+    "holder_type": "insurer_carmaker",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "A telematics device or the vehicle's own systems log driving events continuously",
+    "conditions": ["Applies to telematics ('black box') insurance policies and many connected vehicles"],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["driving", "insurance"]
+  },
+  {
+    "id": "driving.cabin.mic_camera",
+    "datum": "In-cabin microphone and camera activity",
+    "holder_type": "carmaker",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Increasingly fitted for driver-monitoring and voice-assistant features",
+    "conditions": ["Applies to vehicles fitted with driver-monitoring or in-cabin voice systems"],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["driving", "video"]
+  },
+  {
+    "id": "driving.inferred.risk_score",
+    "datum": "Driver risk score used to set an insurance premium",
+    "holder_type": "insurer",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Telematics events are combined into a scored driving profile",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["driving", "insurance", "inference"]
+  },
+  {
+    "id": "driving.relational.passengers",
+    "datum": "Passengers recorded by the cabin camera or microphone",
+    "holder_type": "carmaker",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "An in-cabin sensor captures everyone in the vehicle, not only the registered driver",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["driving", "relational"]
+  },
+
+  {
+    "id": "work.badge.swipe",
+    "datum": "Badge swipes and movement between zones",
+    "holder_type": "employer",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Access-control system logs each swipe by location and time",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["work"]
+  },
+  {
+    "id": "work.keystroke.idle",
+    "datum": "Keystroke rate, idle time, and periodic screenshots",
+    "holder_type": "employer_monitoring_vendor",
+    "holder_examples": ["Teramind"],
+    "kind": "emitted",
+    "mechanism": "Monitoring software installed on the work device samples activity and periodically captures the screen",
+    "conditions": ["Applies where the employer has deployed this class of monitoring software"],
+    "jurisdictions": [],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "Employee Keystroke Monitoring & Logging Software",
+        "publisher": "Teramind",
+        "url": "https://www.teramind.co/features/keystroke-recorder-logger/",
+        "date": "2026",
+        "type": "vendor_doc"
+      }
+    ],
+    "tags": ["work", "monitoring"]
+  },
+  {
+    "id": "work.meeting.transcript",
+    "datum": "Meeting transcripts with speaking time per person",
+    "holder_type": "employer",
+    "holder_examples": ["Microsoft Teams"],
+    "kind": "emitted",
+    "mechanism": "Meeting software transcribes audio automatically when the feature is enabled",
+    "conditions": ["Applies where meeting transcription is turned on for the organisation or the call"],
+    "jurisdictions": [],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "Overview — Recording and transcription for Teams meetings, events, and calls",
+        "publisher": "Microsoft",
+        "url": "https://learn.microsoft.com/en-us/microsoftteams/recording-transcription-overview",
+        "date": "2026",
+        "type": "vendor_doc"
+      }
+    ],
+    "tags": ["work", "audio"]
+  },
+  {
+    "id": "work.inferred.flight_risk",
+    "datum": "Productivity and flight-risk scores",
+    "holder_type": "employer",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Behavioural and activity signals are combined into a retention-risk model",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["work", "inference"]
+  },
+  {
+    "id": "work.relational.colleagues",
+    "datum": "Colleagues transcribed or logged alongside the account holder",
+    "holder_type": "employer",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "A shared meeting or workspace record necessarily includes everyone present",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["work", "relational"]
+  },
+
+  {
+    "id": "browsing.search.query",
+    "datum": "Query text, with timestamp and approximate location",
+    "holder_type": "search_provider",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Logged to serve and rank results, and to a varying extent kept for the account",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["browsing", "search"]
+  },
+  {
+    "id": "browsing.rtb.bid_request",
+    "datum": "Bid requests broadcasting the page, approximate location, and inferred interests to advertising bidders",
+    "holder_type": "adtech_data_broker",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Real-time-bidding auctions broadcast a profile of the visitor to every registered bidder before an ad loads",
+    "conditions": ["Applies to pages and apps carrying real-time-bidding advertising"],
+    "jurisdictions": ["EU", "US"],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "The Biggest Data Breach: ICCL report on the scale of Real-Time Bidding data broadcasts in the U.S. and Europe",
+        "publisher": "Irish Council for Civil Liberties",
+        "url": "https://enforce.ie/rtb/",
+        "date": "2022-05",
+        "type": "policy"
+      }
+    ],
+    "tags": ["browsing", "advertising"]
+  },
+  {
+    "id": "browsing.inferred.health_concern",
+    "datum": "Health conditions and worries, inferred from symptom searches",
+    "holder_type": "adtech_data_broker",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Search terms are matched against known symptom and condition vocabularies",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["browsing", "inference"]
+  },
+  {
+    "id": "browsing.inferred.sensitive_category",
+    "datum": "Sexuality, faith, or immigration status, inferred and sold on",
+    "holder_type": "data_broker",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Browsing and app signals are matched against marketing categories covering sensitive attributes",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["browsing", "inference"]
+  },
+
+  {
+    "id": "home.meter.disaggregated",
+    "datum": "Appliance-level electricity draw, disaggregated from the whole-house signal",
+    "holder_type": "energy_supplier",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Non-intrusive load monitoring identifies individual appliances from their electrical signature in the aggregate meter reading",
+    "conditions": ["Applies where the meter records at a resolution fine enough for the technique, and the supplier or a third party applies it"],
+    "jurisdictions": [],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "Nonintrusive Appliance Load Monitoring",
+        "publisher": "Proceedings of the IEEE",
+        "url": "https://doi.org/10.1109/5.192069",
+        "date": "1992-12",
+        "type": "academic"
+      }
+    ],
+    "tags": ["home", "energy"]
+  },
+  {
+    "id": "home.tv.acr",
+    "datum": "What is on screen, including from devices plugged into the television",
+    "holder_type": "tv_maker",
+    "holder_examples": [],
+    "kind": "emitted",
+    "mechanism": "Automatic content recognition samples the screen continuously and matches it against a reference database",
+    "conditions": ["A US manufacturer was found to have run this without adequate consent from 2014; the practice is now disclosed and typically opt-out"],
+    "jurisdictions": ["US"],
+    "confidence": "documented",
+    "sources": [
+      {
+        "title": "VIZIO to Pay $2.2 Million to FTC, State of New Jersey to Settle Charges It Collected Viewing Histories on 11 Million Smart Televisions without Users' Consent",
+        "publisher": "Federal Trade Commission",
+        "url": "https://www.ftc.gov/news-events/news/press-releases/2017/02/vizio-pay-22-million-ftc-state-new-jersey-settle-charges-it-collected-viewing-histories-11-million",
+        "date": "2017-02-06",
+        "type": "regulatory"
+      }
+    ],
+    "tags": ["home", "video", "tv"]
+  },
+  {
+    "id": "home.speaker.wake_review",
+    "datum": "Wake-word audio, sometimes reviewed by a human annotator",
+    "holder_type": "smart_speaker_maker",
+    "holder_examples": ["Amazon"],
+    "kind": "emitted",
+    "mechanism": "Clips captured after the wake word are sent for processing and, in a disclosed program, for human review to improve the assistant",
+    "conditions": ["Applies to smart-speaker voice assistants; human-review programs and their opt-outs vary by vendor and have changed over time"],
+    "jurisdictions": ["US"],
+    "confidence": "reported",
+    "sources": [
+      {
+        "title": "Amazon Workers Are Listening to What You Tell Alexa",
+        "publisher": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/articles/2019-04-10/is-anyone-listening-to-you-on-alexa-a-global-team-reviews-audio",
+        "date": "2019-04-10",
+        "type": "journalism"
+      }
+    ],
+    "tags": ["home", "audio"]
+  },
+  {
+    "id": "home.doorbell.footage_shared",
+    "datum": "Doorbell footage, sometimes shared with police without a warrant",
+    "holder_type": "camera_maker",
+    "holder_examples": ["Ring"],
+    "kind": "emitted",
+    "mechanism": "The camera owner's footage can be requested by police through the maker's own emergency-request channel",
+    "conditions": ["One major vendor disclosed doing this in 2022 and later discontinued the specific in-app request tool"],
+    "jurisdictions": ["US"],
+    "confidence": "reported",
+    "sources": [
+      {
+        "title": "Ring Reveals They Give Videos to Police Without User Consent or a Warrant",
+        "publisher": "Electronic Frontier Foundation",
+        "url": "https://www.eff.org/deeplinks/2022/07/ring-reveals-they-give-videos-police-without-user-consent-or-warrant",
+        "date": "2022-07",
+        "type": "journalism"
+      }
+    ],
+    "tags": ["home", "video"]
+  },
+  {
+    "id": "home.inferred.occupancy",
+    "datum": "Occupancy, routine, and when the house is empty",
+    "holder_type": "energy_supplier",
+    "holder_examples": [],
+    "kind": "inferred",
+    "mechanism": "Disaggregated appliance use over time reveals a routine, including absence",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["home", "inference"]
+  },
+  {
+    "id": "home.relational.visitors",
+    "datum": "Visitors captured by the doorbell or a neighbour's camera",
+    "holder_type": "camera_maker",
+    "holder_examples": [],
+    "kind": "relational",
+    "mechanism": "A doorbell records whoever approaches the door, not only residents",
+    "conditions": [],
+    "jurisdictions": [],
+    "confidence": "modelled",
+    "sources": [],
+    "tags": ["home", "relational"]
+  }
+]
