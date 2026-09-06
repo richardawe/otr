@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On the record</title>
+<meta name="description" content="What an ordinary action, and an ordinary day, put on the record about you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="wrap">
+
+  <div class="standing">
+    <span>On the record</span>
+    <span>Illustrative data</span>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-action" aria-controls="panel-action" aria-selected="true" data-panel="action">
+      <span class="tab-label">One action</span>
+      <span class="tab-sub">What a single act generates</span>
+    </button>
+    <button class="tab" role="tab" id="tab-day" aria-controls="panel-day" aria-selected="false" data-panel="day">
+      <span class="tab-label">One day</span>
+      <span class="tab-sub">What accumulates in 24 hours</span>
+    </button>
+  </div>
+
+  <!-- ONE ACTION -->
+  <section id="panel-action" role="tabpanel" aria-labelledby="tab-action">
+    <h1 class="display">Describe something you did today.</h1>
+
+    <div class="entry">
+      <input id="entry" class="entry-input" type="text"
+             placeholder="I walked to the shop for milk" aria-label="Describe an action">
+    </div>
+
+    <div class="controls">
+      <button id="submit" class="btn" disabled>Show the records</button>
+      <span id="examples" class="examples"></span>
+    </div>
+
+    <div id="action-out" aria-live="polite"></div>
+  </section>
+
+  <!-- ONE DAY -->
+  <section id="panel-day" role="tabpanel" aria-labelledby="tab-day" hidden>
+    <p id="day-headline" class="display small"></p>
+    <p id="day-split" class="split"></p>
+
+    <svg id="day-chart" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <div class="axis"><span>midnight</span><span>noon</span><span>midnight</span></div>
+
+    <input id="scrub" type="range" min="0" max="1440" value="1440" aria-label="Time of day">
+
+    <div class="controls">
+      <button id="play" class="btn">Replay the day</button>
+      <button id="skip" class="ghost">Skip to midnight</button>
+    </div>
+
+    <div id="day-feed"></div>
+    <div id="day-profile"></div>
+  </section>
+
+  <p class="caveat">
+    Hand-written examples, not a live audit. Volumes are plausible orders of
+    magnitude rather than observed counts; the ad-auction figures follow the
+    ICCL's estimate of 462 broadcasts a day for a UK adult. What is held varies
+    by country, handset, and settings.
+  </p>
+
+</main>
+<script src="app.js" defer></script>
+</body>
+</html>
